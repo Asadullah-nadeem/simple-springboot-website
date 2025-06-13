@@ -16,18 +16,29 @@ public class pagecontroller {
   private String firstName;
   private String lastName;
 
-  public String submit(
-    @RequestParam("username") String username,
-    @RequestParam("firstName") String firstName,
-    @RequestParam("lastName") String lastName,
-    Model model) {
+  public String getUsername() { return username; }
+  public void setUsername(String username) { this.username = username; }
 
-    model.addAttribute("username", username);
-    model.addAttribute("firstName", firstName);
-    model.addAttribute("lastName", lastName);
+  public String getFirstName() { return firstName; }
+  public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    return "2";
-  }
+  public String getLastName() { return lastName; }
+  public void setLastName(String lastName) { this.lastName = lastName; }
+
+
+
+  // public String submit(
+  // @RequestParam("username") String username,
+  // @RequestParam("firstName") String firstName,
+  // @RequestParam("lastName") String lastName,
+  // Model model) {
+
+  //   model.addAttribute("username", username);
+  //   model.addAttribute("firstName", firstName);
+  //   model.addAttribute("lastName", lastName);
+
+  //   return "2";
+  // }
 
 
   @GetMapping("/")
@@ -39,9 +50,17 @@ public class pagecontroller {
   //       model.addAttribute("username", username);
   //       return "2";
   // }
-  public String submit(@ModelAttribute pagecontroller user, Model model) {
-    model.addAttribute("pagecontroller", user);
-    return "2";
+  // public String submit(@ModelAttribute pagecontroller user, Model model) {
+  //   model.addAttribute("pagecontroller", user);
+  //   return "2";
+  // }
+  @PostMapping("/submit")
+  public String submit(@ModelAttribute("user") pagecontroller user, Model model) {
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("firstName", user.getFirstName());
+        model.addAttribute("lastName", user.getLastName());
+        return "2";
   }
+
 }
 
