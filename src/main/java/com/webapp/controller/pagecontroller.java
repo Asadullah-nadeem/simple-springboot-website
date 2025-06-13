@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.webapp.User.User;
-
-
 
 
 @Controller
 public class pagecontroller {
+
+  private String username;
+  private String firstName;
+  private String lastName;
 
   public String submit(
     @RequestParam("username") String username,
@@ -38,11 +39,9 @@ public class pagecontroller {
   //       model.addAttribute("username", username);
   //       return "2";
   // }
-  public String submit(@ModelAttribute User user, Model model) {
-    model.addAttribute("user", user);
-    return "2"; 
-}
-
-
+  public String submit(@ModelAttribute pagecontroller user, Model model) {
+    model.addAttribute("pagecontroller", user);
+    return "2";
+  }
 }
 
